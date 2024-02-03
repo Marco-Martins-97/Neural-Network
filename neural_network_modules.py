@@ -1,7 +1,7 @@
 import numpy as np
 np.random.seed(0)
 
-
+#Layers
 class Dense_layer:
     def __init__(self, n_inputs, n_outouts):
         self.weights = np.random.randn(n_outouts, n_inputs)
@@ -19,7 +19,8 @@ class Dense_layer:
     
     def print(self):
         return self.weights, self.biases
-    
+
+#Activation   
 class Tanh:
     def forward(self, input):
         self.input = input
@@ -28,3 +29,9 @@ class Tanh:
     def backward(self, output_gradient):
         return np.multiply(output_gradient, 1- np.tanh(self.input) ** 2)
 
+#Mean Squared Error
+def mse(y_true, y_pred):    
+    return np.mean(np.power(y_true - y_pred, 2))
+
+def mse_derivative(y_true, y_pred):
+    return 2 * (y_pred - y_true) / np.size(y_true)
