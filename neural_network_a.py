@@ -6,7 +6,6 @@ class Neural_Network:
     def __init__(self):
         self.learning_rate = 0.1
         self.error = 0
-        self.loss = 0
 
         self.X = np.reshape([[0, 0], [0, 1], [1, 0], [1, 1]], (4, 2, 1))
         self.Y = np.reshape([[0], [1], [1], [0]], (4, 1, 1))
@@ -40,9 +39,11 @@ class Neural_Network:
             output3 = self.dense2.forward(output2)
             output4 = self.activation2.forward(output3)
             
-            self.error = np.mean(np.power(y - output4, 2))
+            self.error = nm.mse(y, output4)
+     
             #print(error)
-            grad = 2 * (output4 - y) / np.size(y)
+            grad = nm.mse_derivative(y, output4)
+
 
             grad1 = self.activation2.backward(grad)
             grad2 = self.dense2.backward(grad1, self.learning_rate)
@@ -62,5 +63,4 @@ class Neural_Network:
             self.gradient4 = grad4
         self.error /= len(x)
         #print(self.error)
-
 
