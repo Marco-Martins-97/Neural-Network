@@ -129,7 +129,7 @@ def draw_display(e, epochs, weights, biases, weights2, biases2, output, output1,
 
 nn = Neural_Network()
 
-epochs = 10000
+epochs = 1000
 epc = 0
 
 
